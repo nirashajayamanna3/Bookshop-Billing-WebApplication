@@ -65,7 +65,7 @@
 <body>
 <div class="container">
     <h2>Add New Customer</h2>
-    <form action="addCustomer" method="post">
+    <form action="AddCustomerServlet" method="post">
         <label for="accountNumber">Account Number:</label>
         <input type="text" id="accountNumber" name="accountNumber" required>
 

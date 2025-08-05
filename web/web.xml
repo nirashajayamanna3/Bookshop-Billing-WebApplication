@@ -9,13 +9,15 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
-	    <servlet-name>ManageCustomerServlet</servlet-name>
-	    <servlet-class>servlet.ManageCustomerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>ManageCustomerServlet</servlet-name>
-	    <url-pattern>/manageCustomers</url-pattern>
-	</servlet-mapping>
+        <servlet-name>AddCustomerServlet</servlet-name>
+        <servlet-class>Controller.AddCustomerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddCustomerServlet</servlet-name>
+        <url-pattern>/AddCustomer</url-pattern>
+    </servlet-mapping>
+        
 	
     
 </web-app>
