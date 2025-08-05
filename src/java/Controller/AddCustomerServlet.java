@@ -1,15 +1,13 @@
 package Controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-
-import persistence.DBConnection;
+import persistence.customer.customer;
+import persistence.customer.customerDAO;
 
 @WebServlet(name = "AddCustomerServlet", urlPatterns = {"/AddCustomerServlet"})
 public class AddCustomerServlet extends HttpServlet {
@@ -19,7 +17,7 @@ public class AddCustomerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8"); // Ensure proper encoding for form data
+        request.setCharacterEncoding("UTF-8");
 
         String accountNumber = request.getParameter("accountNumber");
         String name = request.getParameter("name");
@@ -27,36 +25,21 @@ public class AddCustomerServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
         try {
-            conn = DBConnection.getConnection();
+            // Create Customer object
+            customer customer = new customer(accountNumber, name, address, phone, email);
 
-            String sql = "INSERT INTO customers (accountNumber, name, address, phone, email) VALUES (?, ?, ?, ?, ?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, accountNumber);
-            stmt.setString(2, name);
-            stmt.setString(3, address);
-            stmt.setString(4, phone);
-            stmt.setString(5, email);
+            // Call DAO to insert into DB
+            customerDAO customerDAO = new customerDAO();
+            customerDAO.addCustomer(customer);
 
-            stmt.executeUpdate();
-
-            // Redirect to customer details page after successful insert
+            // Redirect after successful insert
             response.sendRedirect("CustomerDetails.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.setContentType("text/html");
+            response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println("Error: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
