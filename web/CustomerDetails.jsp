@@ -86,7 +86,7 @@
         %>
     </table>
     <div align="center">
-	    <a href="Home.jsp">⬅ Back to Customer List</a>
+	    <a href="home.jsp">⬅ Back to Customer List</a>
 	</div>
 </body>
 </html>

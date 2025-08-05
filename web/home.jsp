@@ -121,6 +121,8 @@
         <!-- Product Selection Form -->
         <form method="get">
             <label for="product">Search Product:</label>
+            <input type="text" id="product" name="product" value="<%= request.getParameter("product") != null ? request.getParameter("product") : "" %>">
+            <input type="button" value="Item" onclick="window.location.href='Product.jsp';"><br/><br/>
            
             <input type="submit" value="Add">
         </form>
