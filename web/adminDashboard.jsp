@@ -32,7 +32,7 @@
         
         <a href="#">🏠 Home</a>
         <a href="manageUser.jsp">👥 User</a>
-        <a href="manageProduct.jsp">📦 Product</a>
+        <a href="manageProducts.jsp">📦 Product</a>
         <a href="manageCustomer.jsp">👥 Customer</a>
         
         <a href="manageBill.jsp">📒 Bill</a>
