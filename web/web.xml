@@ -17,6 +17,16 @@
         <servlet-name>AddCustomerServlet</servlet-name>
         <url-pattern>/AddCustomer</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdduserServlet</servlet-name>
+        <servlet-class>controller.AdduserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdduserServlet</servlet-name>
+        <url-pattern>/addUser</url-pattern>
+    </servlet-mapping>
         
 	
     

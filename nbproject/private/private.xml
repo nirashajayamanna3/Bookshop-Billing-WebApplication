@@ -6,8 +6,12 @@
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/AddCustomerServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/LoginServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/home.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/User/UserDAO.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/AdduserServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/index.html</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/AddCustomer.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/web.xml</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/addUser.jsp</file>
         </group>
     </open-files>
 </project-private>

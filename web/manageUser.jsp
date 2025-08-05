@@ -45,7 +45,6 @@
         <a href="#">👥 User</a>
         <a href="manageProducts.jsp">📦 Product</a>
         <a href="manageCustomer.jsp">👥 Customer</a>
-        
         <a href="manageBill.jsp">📒 Bill</a>
         <a href="adminDashboard.jsp">📊 REPORTS</a>
         <a href="adminDashboard.jsp">📈 Charts</a>
@@ -56,7 +55,53 @@
         <div style="text-align: right; margin: 10px;">
             <a href="addUser.jsp">➕ Add New User</a>
         </div>
-        
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            <%
+                Connection con = null;
+                Statement stmt = null;
+                ResultSet rs = null;
+                try {
+                    con = DBConnection.getConnection();
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery("SELECT * FROM users");
+
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String username = rs.getString("username");
+                        String password = rs.getString("password");
+                        String type = rs.getString("type");
+            %>
+            <tr>
+                <td><%= id %></td>
+                <td><%= username %></td>
+                <td><%= password %></td>
+                <td><%= type %></td>
+                <td>
+                    <a href="editUser.jsp?id=<%= id %>">📝 Edit</a> |
+                    <a href="DeleteUserServlet?id=<%= rs.getInt("id") %>" 
+				       onclick="return confirm('Are you sure you want to delete this user?');">🗑️ Delete</a>
+                </td>
+            </tr>
+            <%
+                    }
+                } catch (Exception e) {
+                    out.println("<tr><td colspan='5'>Error: " + e.getMessage() + "</td></tr>");
+                } finally {
+                    try { if (rs != null) rs.close(); } catch (Exception e) {}
+                    try { if (stmt != null) stmt.close(); } catch (Exception e) {}
+                    try { if (con != null) con.close(); } catch (Exception e) {}
+                }
+            %>
+        </table>
     </div>
 </body>
 </html>
+
