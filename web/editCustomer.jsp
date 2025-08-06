@@ -1,20 +1,16 @@
-<%@page import="persistence.User.UserDAO"%>
-<%@page import="persistence.User.User"%>
+<%@page import="persistence.customer.customerDAO"%>
+<%@page import="persistence.customer.customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    // Get user ID from URL
-    String idStr = request.getParameter("id");
-    int id = Integer.parseInt(idStr);
-
-    // Retrieve user data
-    UserDAO userDAO = new UserDAO();
-    User user = userDAO.getUserByID(id);
+    String accountNumber = request.getParameter("accountNumber");
+    customerDAO dao = new customerDAO();
+    customer customer = dao.getCustomerByAccountNumber(accountNumber);
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <title>Edit Customer</title>
     <style>
         body { font-family: Arial, sans-serif; }
         .sidebar {
@@ -30,8 +26,7 @@
             text-decoration: none;
             color: #000;
             border-bottom: 1px solid #ccc;
-        }
-        input[type="text"], input[type="password"], select {
+        }        input[type="text"], input[type="email"] {
             width: 300px;
             padding: 8px;
             margin: 5px 0;
@@ -53,27 +48,28 @@
         <a href="adminDashboard.jsp">📈 Charts</a>
     </div>
     <div style="margin-left:500px; padding:20px;">
-        <h2 >Edit User</h2>
-    <form action="EditUserServlet" method="post">
-        <input type="hidden" name="id" value="<%= user.getId() %>">
+        <h2 >Edit Customer</h2>
+    
+    <form action="EditCustomerServlet" method="post">
+        <label>Account Number:</label><br>
+        <input type="text" name="accountNumber" value="<%=customer.getAccountNumber()%>" readonly><br>
 
-        <label>Username:</label><br>
-        <input type="text" name="username" value="<%= user.getUsername() %>" required><br>
+        <label>Name:</label><br>
+        <input type="text" name="name" value="<%=customer.getName()%>" required><br>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" value="<%= user.getPassword() %>" required><br>
+        <label>Address:</label><br>
+        <input type="text" name="address" value="<%=customer.getAddress()%>" required><br>
 
-        <label>Type:</label><br>
-        <select name="type" required>
-            <option value="manager" <%= "manager".equals(user.getType()) ? "selected" : "" %>>Manager</option>
-            <option value="cashier" <%= "cashier".equals(user.getType()) ? "selected" : "" %>>Cashier</option>
-        </select><br>
+        <label>Phone:</label><br>
+        <input type="text" name="phone" value="<%=customer.getPhone()%>" required><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" value="<%=customer.getEmail()%>" required><br>
 
         <input type="submit" value="Update">
     </form>
     <br>
-    
-    <a href="manageUser.jsp">🔙 Back to User List</a>
+    <a href="manageCustomer.jsp">🔙 Back to Customer List</a>
     </div>
 </body>
 </html>

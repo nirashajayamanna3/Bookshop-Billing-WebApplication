@@ -85,10 +85,11 @@
                 <td><%= password %></td>
                 <td><%= type %></td>
                 <td>
-                    <a href="editUser.jsp?id=<%= id %>">📝 Edit</a> |
-                    <a href="DeleteUserServlet?id=<%= rs.getInt("id") %>" 
-				       onclick="return confirm('Are you sure you want to delete this user?');">🗑️ Delete</a>
+                    <a href="editUser.jsp?id=<%= id %>">📝 Edit</a> | <br/>
+                    <a href="DeleteUserServlet?id=<%= id %>" 
+                       onclick="return confirm('Are you sure you want to delete this user?');">🗑️ Delete</a>
                 </td>
+
             </tr>
             <%
                     }

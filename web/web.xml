@@ -27,6 +27,16 @@
         <servlet-name>AdduserServlet</servlet-name>
         <url-pattern>/addUser</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>controller.EditUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/editUser</url-pattern>
+    </servlet-mapping>
         
 	
     
