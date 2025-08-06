@@ -42,23 +42,23 @@ public class ProductDAO {
     }
 
     // Delete a product by productCode
-    public void deleteProduct(String productCode) throws Exception {
+    public void deleteProduct(String product_code) throws Exception {
         String sql = "DELETE FROM item WHERE product_code = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, productCode);
+            ps.setString(1, product_code);
             ps.executeUpdate();
         }
     }
 
     // Get product by code
-    public Product getProductByCode(String productCode) throws Exception {
-        String sql = "SELECT * FROM item WHERE productCode = ?";
+    public Product getProductByCode(String product_code) throws Exception {
+        String sql = "SELECT * FROM item WHERE product_code = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, productCode);
+            ps.setString(1, product_code);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return new Product(

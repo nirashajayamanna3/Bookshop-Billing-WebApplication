@@ -91,8 +91,8 @@
                 <td><%= discount %></td>
                 <td><%= tax %></td>
                 <td>
-                    <a href="editProduct.jsp?productCode=<%= code %>">📝 Edit</a> | <br/>
-                    <a href="DeleteProductServlet?productCode=<%= code %>" 
+                    <a href="editProduct.jsp?product_code=<%= code %>">📝 Edit</a> | <br/>
+                    <a href="DeleteProductServlet?product_code=<%= code %>" 
                        onclick="return confirm('Are you sure you want to delete this product?');">🗑️ Delete</a>
                 </td>
             </tr>

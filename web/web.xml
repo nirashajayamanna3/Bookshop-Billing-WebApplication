@@ -37,6 +37,15 @@
         <servlet-name>EditUserServlet</servlet-name>
         <url-pattern>/editUser</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>EditProductServlet</servlet-name>
+    <servlet-class>controller.EditProductServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>EditProductServlet</servlet-name>
+    <url-pattern>/editProducts</url-pattern>
+</servlet-mapping>
         
 	
     

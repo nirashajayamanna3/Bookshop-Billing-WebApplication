@@ -1,10 +1,10 @@
 package persistence.Product;
 
 public class Product {
-    private String productCode;
-    private String productName;
+    private String product_code;
+    private String product_name;
     private String description;
-    private double unitPrice;
+    private double unit_price;
     private double discount;
     private double tax;
 
@@ -12,12 +12,12 @@ public class Product {
     public Product() {}
 
     // Parameterized constructor
-    public Product(String productCode, String productName, String description,
-                   double unitPrice, double discount, double tax) {
-        this.productCode = productCode;
-        this.productName = productName;
+    public Product(String product_code, String product_name, String description,
+                   double unit_price, double discount, double tax) {
+        this.product_code = product_code;
+        this.product_name = product_name;
         this.description = description;
-        this.unitPrice = unitPrice;
+        this.unit_price = unit_price;
         this.discount = discount;
         this.tax = tax;
     }
@@ -25,19 +25,19 @@ public class Product {
     // Getters and Setters
 
     public String getProductCode() {
-        return productCode;
+        return product_code;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setProductCode(String product_code) {
+        this.product_code = product_code;
     }
 
     public String getProductName() {
-        return productName;
+        return product_name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductName(String product_name) {
+        this.product_name = product_name;
     }
 
     public String getDescription() {
@@ -49,11 +49,11 @@ public class Product {
     }
 
     public double getUnitPrice() {
-        return unitPrice;
+        return unit_price;
     }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setUnitPrice(double unit_price) {
+        this.unit_price = unit_price;
     }
 
     public double getDiscount() {
@@ -74,8 +74,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [productCode=" + productCode + ", productName=" + productName +
-               ", description=" + description + ", unitPrice=" + unitPrice +
+        return "Product [product_code=" + product_code + ", product_name=" + product_name +
+               ", description=" + description + ", unit_price=" + unit_price +
                ", discount=" + discount + ", tax=" + tax + "]";
     }
 }
