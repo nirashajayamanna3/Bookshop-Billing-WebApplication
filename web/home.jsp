@@ -10,8 +10,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
+            
+            
         }
 
         h2 {
@@ -89,6 +89,10 @@
     </style>
 </head>
 <body>
+    <h1>Bill System</h1>
+    <form action="LogoutServlet" method="get" style="text-align: right; margin: 10px;">
+    <input type="submit" value="Logout" style="padding: 8px 16px; background-color: #f44336; border: none; border-radius: 4px;">
+        </form>
     <div>
         <!-- Customer Search Form -->
         <form method="get">
@@ -97,6 +101,7 @@
             <input type="submit" value="Search">
             <input type="button" value="Add" onclick="window.location.href='AddCustomer.jsp';">
         </form>
+        
         <table>
         	<tr>
 			    <td>Account Number</td>
