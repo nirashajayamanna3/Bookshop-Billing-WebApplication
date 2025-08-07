@@ -78,4 +78,8 @@ public class Product {
                ", description=" + description + ", unit_price=" + unit_price +
                ", discount=" + discount + ", tax=" + tax + "]";
     }
+
+    public boolean equalsIgnoreCase(String productName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

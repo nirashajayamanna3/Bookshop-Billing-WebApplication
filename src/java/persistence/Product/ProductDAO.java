@@ -97,4 +97,32 @@ public class ProductDAO {
         }
         return products;
     }
+
+    public Product getProductByName(String name) {
+        Product product = null;
+        try {
+            Connection conn = DBConnection.getConnection();
+            String sql = "SELECT * FROM item WHERE name = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                product = new Product();
+                product.setProductCode(rs.getString("product_code"));
+                product.setProductName((rs.getString("product_name")));
+                product.setUnitPrice(rs.getDouble("unit_price"));
+                // Add other fields if needed
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+}
+
 }
