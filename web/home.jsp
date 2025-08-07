@@ -1,3 +1,4 @@
+<%@page import="persistence.customer.customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -131,40 +132,48 @@
 
     <div class="container">
 
-        <!-- Customer Search Section -->
+        <!-- ✅ Customer Search Section -->
         <div>
             <div class="section-title">Search Customer</div>
-            <form method="get">
-                <label for="name">Customer Name:</label>
-                <input type="text" id="name" name="name">
-                <input type="submit" value="Search">
+
+            <!-- ✅ Single clean form -->
+            <form action="SearchCustomerServlet" method="get">
+                <label>Customer Name:</label>
+                <input type="text" name="name" required />
+                <input type="submit" value="Search" />
                 <input type="button" value="Add" onclick="window.location.href='AddCustomer.jsp';">
             </form>
 
-            <!-- Customer Info Table -->
-            <table  class="info-table" border="1" style="width: 100%; border-collapse: collapse;">
+            <!-- ✅ Display customer info if exists -->
+            <%
+                customer cust = (customer) request.getAttribute("customer");
+                if (cust != null) {
+            %>
+            <table class="info-table">
                 <tr>
                     <th>Field</th>
                     <th>Value</th>
                 </tr>
                 <tr>
                     <td>Account Number</td>
-                    <td><!-- Dynamic value here --></td>
+                    <td><%= cust.getAccountNumber() %></td>
                 </tr>
                 <tr>
                     <td>Name</td>
-                    <td><!-- Dynamic value here --></td>
+                    <td><%= cust.getName() %></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><!-- Dynamic value here --></td>
+                    <td><%= cust.getAddress() %></td>
                 </tr>
                 <tr>
                     <td>Phone</td>
-                    <td><!-- Dynamic value here --></td>
+                    <td><%= cust.getPhone() %></td>
                 </tr>
             </table>
-
+            <%
+                }
+            %>
         </div>
 
         <!-- Product Search Section -->

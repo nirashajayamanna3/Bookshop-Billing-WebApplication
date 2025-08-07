@@ -109,5 +109,31 @@ public class customerDAO {
             stmt.executeUpdate();
         }
     }
+
+    public customer getCustomerByName(String name) {
+         customer c = null;
+    try {
+        Connection conn = getConnection();
+        String sql = "SELECT * FROM customers WHERE name = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, name);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            c = new customer();
+            c.setAccountNumber(rs.getString("accountNumber"));
+            c.setName(rs.getString("name"));
+            c.setAddress(rs.getString("address"));
+            c.setPhone(rs.getString("phone"));
+        }
+
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return c;
+    }
 }
 
