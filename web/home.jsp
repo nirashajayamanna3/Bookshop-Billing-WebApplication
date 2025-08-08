@@ -1,193 +1,280 @@
-<%@page import="persistence.customer.customer"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="persistence.DBConnection"%>
+<%@page import="java.sql.Connection"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Bill System - Customer & Product Info</title>
+    <title>Sales Transaction</title>
+    <script>
+        // Optional: client-side check
+        function validatePhone() {
+            const phone = document.forms["searchForm"]["phone"].value;
+            if (phone === "") {
+                alert("Please enter a phone number.");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            
-            margin: 0;
-            padding: 0;
+            margin: 20px;
         }
-
-        header {
-            background-color: #ffffff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            
+        h2 {
+            margin-bottom: 20px;
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        .logout-btn {
-            background-color: #f44336;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .logout-btn:hover {
-            background-color: #d73833;
-        }
-
-        .container {
-            padding: 30px 40px;
-        }
-
-        form {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            
-        }
-
-        label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            padding: 8px;
-            width: 250px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="submit"],
-        input[type="button"] {
-            padding: 8px 16px;
-            margin-left: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        input[type="submit"]:hover,
-        input[type="button"]:hover {
-            background-color: #45a049;
-        }
-
-        .info-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #fff;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-
-        .info-table th, .info-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
         }
-
-        .info-table th {
-            background-color: #f8f8f8;
-            font-weight: bold;
-            color: #333;
+        th {
+            background-color: #444;
+            color: white;
+            padding: 10px;
         }
-
-        .info-table tr:hover {
-            background-color: #f1f1f1;
+        td {
+            padding: 8px;
         }
-
-        .info-table td {
-            color: #555;
+        .cart-btn {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
         }
-        
-
-        .section-title {
+        .cart-btn:hover {
+            background-color: #218838;
+        }
+        .action-btns button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+        .update-btn { background-color: #007bff; }
+        .pay-btn { background-color: #28a745; }
+        .clear-btn { background-color: #dc3545; }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        .right-panel {
+            float: right;
+            width: 40%;
+        }
+        .left-panel {
+            width: 55%;
+            float: left;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .form-group {
             margin-bottom: 10px;
-            font-size: 18px;
-            color: #333;
+            display: flex;
+            padding: 5px;
+            margin: 5px;
         }
-
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 50%;
+            padding: 6px;
+        }
+        .form-group button{
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 style="text-align: center;">Bill System</h1>
-        <form action="LogoutServlet" method="get" style="margin: 0;">
+<h2>Sales Transaction</h2>
+<form action="LogoutServlet" method="get" style="margin: 0; text-align: right; ">
             <input type="submit" value="Logout" class="logout-btn">
         </form>
-    </header>
-
-    <div class="container">
-
-        <!-- ✅ Customer Search Section -->
-        <div>
-            <div class="section-title">Search Customer</div>
-
-            <!-- ✅ Single clean form -->
-            <form action="SearchCustomerServlet" method="get">
-                <label>Customer Name:</label>
-                <input type="text" name="name" required />
-                <input type="submit" value="Search" />
-                <input type="button" value="Add" onclick="window.location.href='AddCustomer.jsp';">
-            </form>
-
-            <!-- ✅ Display customer info if exists -->
+<div class="clearfix">
+    <div class="left-panel">
+        
+        <table>
+            <tr>
+                
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Discount</th>
+                
+                <th>Act.</th>
+            </tr>
             <%
-                customer cust = (customer) request.getAttribute("customer");
-                if (cust != null) {
+                try {
+                    Connection conn = DBConnection.getConnection();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM item");
+
+                    while (rs.next()) {
             %>
-            <table class="info-table">
-                <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                </tr>
-                <tr>
-                    <td>Account Number</td>
-                    <td><%= cust.getAccountNumber() %></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><%= cust.getName() %></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><%= cust.getAddress() %></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td><%= cust.getPhone() %></td>
-                </tr>
-            </table>
+            <tr>
+                
+                
+                <td><%= rs.getString("product_code") %></td>
+                <td><%= rs.getString("product_name") %></td>
+                <td>Rs<%= rs.getDouble("unit_price") %></td>
+                <td><%= rs.getDouble("discount") %>%</td>
+                
+                <td>
+                    <form method="post" action="CartServlet">
+                        <input type="hidden" name="product_code" value="<%= rs.getString("product_code") %>">
+                        <button type="submit" class="cart-btn">🛒</button>
+                    </form>
+                </td>
+            </tr>
             <%
+                    }
+
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                } catch (Exception e) {
+                    out.println("<tr><td colspan='6'>Error: " + e.getMessage() + "</td></tr>");
                 }
             %>
-        </div>
-
-        <!-- Product Search Section -->
-        <div style="margin-top: 40px;">
-            <div class="section-title">Search Product</div>
-            <form method="get">
-                <label for="product">Product Name:</label>
-                <input type="text" id="product" name="product" value="<%= request.getParameter("product") != null ? request.getParameter("product") : "" %>">
-                <input type="button" value="Item" onclick="window.location.href='Product.jsp';">
-                <input type="submit" value="Add">
-            </form>
-        </div>
-
+        </table>
     </div>
 
+     <div class="right-panel">
+        <div class="form-group">
+            <form action="SearchCustomerServlet" method="post" name="searchForm" onsubmit="return validatePhone()">
+                <label>Customer's Phone Number:</label>
+                <input type="text" placeholder="Enter customer's Phone Number" name="phone">
+                <button type="submit">Search</button>
+                <button type="button" onclick="location.href='AddCustomer.jsp'">Add Customer</button>
+            </form>
+    </div>
+
+    <div id="customerInfo" style="margin-top: 10px; font-weight: bold;"></div>
+    <%
+    String customerName = (String) session.getAttribute("customerName");
+    String customerPhone = (String) session.getAttribute("customerPhone");
+    Boolean notFound = (Boolean) session.getAttribute("notFound");
+
+    if (customerName != null) {
+    %>
+            <h3>Customer Name: <%= customerName %></h3>
+            <p>Phone: <%= customerPhone %></p>
+    <%
+        } else if (notFound != null && notFound) {
+    %>
+            <script>
+                alert("Phone number is invalid. Please add a new customer.");
+            </script>
+    <%
+        session.removeAttribute("notFound"); // Clear flag after showing alert
+    }
+%>
+
+    <script>
+        function searchCustomer() {
+            const phone = document.getElementById("phoneInput").value;
+
+            if (phone.trim() === "") {
+                alert("Please enter a phone number.");
+                return;
+            }
+
+            fetch("SearchCustomerServlet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "phone=" + encodeURIComponent(phone)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.found) {
+                    document.getElementById("customerInfo").innerText = "Customer Name: " + data.name;
+                } else {
+                    if (confirm("Phone number not found. Do you want to add a new customer?")) {
+                        window.location.href = "AddCustomer.jsp";
+                    }
+                }
+            })
+            .catch(error => {
+                alert("Error: " + error);
+            });
+        }
+    </script>
+         
+        <table>
+            <tr>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Discount</th>
+                
+                <th>Subtotal</th>
+                <th>Action</th>
+            </tr>
+            <%
+                List<Map<String, Object>> cart = (List<Map<String, Object>>) session.getAttribute("cart");
+                double total = 0;
+                if (cart != null && !cart.isEmpty()) {
+                for (Map<String, Object> item : cart) {
+                    String code = (String) item.get("code");
+                    String name = (String) item.get("name");
+                    double price = (double) item.get("price");
+                    int qty = (int) item.get("qty");
+                    double discount = (double) item.get("discount");
+
+                    // Apply discount to subtotal
+                    double subTotal = price * qty * (1 - discount / 100.0);
+                    total += subTotal;
+            %>
+            <tr>
+                <td><%= item.get("code") %></td>
+                <td><%= item.get("name") %></td>
+                <td><%= item.get("qty") %></td>
+                
+                <td>Rs<%= item.get("price") %></td>
+                <td><%= item.get("discount") %></td>
+                <td>Rs<%= subTotal %></td>
+                <td><form method="post" action="CartServlet"><button class="delete-btn" name="remove" value="<%= item.get("code") %>">🗑️</button></form></td>
+            </tr>
+            <%
+                    }
+                }
+            %>
+            <tr>
+                <td colspan="4" style="text-align:right;"><strong>Total Amount</strong></td>
+                <td colspan="2"><strong>Rs<%= total %></strong></td>
+            </tr>
+        </table>
+
+        <div class="action-btns">
+            <button class="update-btn">Update Quantity</button>
+            <button class="pay-btn">Pay</button>
+            <button class="clear-btn" onclick="location.href='CartServlet?clear=true'">Clear Cart</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

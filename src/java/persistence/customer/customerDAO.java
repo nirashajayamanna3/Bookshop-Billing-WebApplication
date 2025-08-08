@@ -7,6 +7,7 @@ package persistence.customer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import persistence.DBConnection;
 
 public class customerDAO {
 
@@ -14,6 +15,27 @@ public class customerDAO {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bookstore";
     private static final String DB_USER = "root";
     private static final String DB_PASS = ""; // Your DB password
+
+    public static String getCustomerNameByPhone(String phone) {
+        String name = null;
+
+        try (Connection con = DBConnection.getConnection()) {
+            String query = "SELECT name FROM customers WHERE phone = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, phone);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                name = rs.getString("name");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return name;
+    }
+
 
     // Helper method to connect to the database
     private Connection getConnection() throws SQLException {

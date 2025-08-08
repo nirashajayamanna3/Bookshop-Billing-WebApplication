@@ -46,6 +46,15 @@
     <servlet-name>EditProductServlet</servlet-name>
     <url-pattern>/editProducts</url-pattern>
 </servlet-mapping>
+<servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>servlet.CartServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
+</servlet-mapping>
         
 	
     
