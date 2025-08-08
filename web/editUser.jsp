@@ -3,8 +3,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     // Get user ID from URL
-    String idStr = request.getParameter("id");
-    int id = Integer.parseInt(idStr);
+    String id = request.getParameter("id");
+    
 
     // Retrieve user data
     UserDAO userDAO = new UserDAO();
@@ -55,7 +55,8 @@
     <div style="margin-left:500px; padding:20px;">
         <h2 >Edit User</h2>
     <form action="EditUserServlet" method="post">
-        <input type="hidden" name="id" value="<%= user.getId() %>">
+        <label>ID:</label><br>
+        <input type="text" name="id" value="<%= user.getId() %>"required><br>
 
         <label>Username:</label><br>
         <input type="text" name="username" value="<%= user.getUsername() %>" required><br>

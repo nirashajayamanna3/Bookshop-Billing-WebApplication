@@ -23,7 +23,7 @@ public class UserDAO {
     // Insert a new user
     public List<User> getAllUsers() throws SQLException {
     List<User> users = new ArrayList<>();
-    String sql = "SELECT * FROM users";
+    String sql = "SELECT * FROM user";
 
     try (Connection conn = getConnection();
          PreparedStatement stmt = conn.prepareStatement(sql);
@@ -31,7 +31,7 @@ public class UserDAO {
 
         while (rs.next()) {
             User user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setType(rs.getString("type"));
@@ -45,18 +45,18 @@ public class UserDAO {
 
 
     // Retrieve one user by id (optional, for search/update)
-    public User getUserByID(int id) throws SQLException {
-        String sql = "SELECT * FROM users WHERE id = ?";
+    public User getUserByID(String id) throws SQLException {
+        String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
+            stmt.setString(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     user = new User();
-                    user.setId(rs.getInt("id"));
+                    user.setId(rs.getString("id"));
                     user.setUsername(rs.getString("username"));
                     user.setPassword(rs.getString("password"));
                     user.setType(rs.getString("type"));
@@ -69,23 +69,23 @@ public class UserDAO {
     }
 
     // Delete a user
-    public void deleteUser(int id) throws SQLException {
-        String sql = "DELETE FROM users WHERE id = ?";
+    public void deleteUser(String id) throws SQLException {
+        String sql = "DELETE FROM user WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+            stmt.setString(1, id);
             stmt.executeUpdate();
         }
     }
 
     // Update an existing user (optional)
     public void updateUser(User user) throws SQLException {
-        String sql = "UPDATE users SET username=?, password=?, type=? WHERE id=?";
+        String sql = "UPDATE user SET username=?, password=?, type=? WHERE id=?";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, user.getId());
+            stmt.setString(1, user.getId());
             stmt.setString(2, user.getUsername());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getType());
@@ -95,12 +95,12 @@ public class UserDAO {
     }
 
     public void addUser(User user) throws SQLException {
-        String sql = "INSERT INTO users (id, username, password, type) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO user (id, username, password, type) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, user.getId());
+            stmt.setString(1, user.getId());
             stmt.setString(2, user.getUsername());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getType());

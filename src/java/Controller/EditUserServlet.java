@@ -13,21 +13,19 @@ public class EditUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
-        String idStr = request.getParameter("id");
+        String id = request.getParameter("id");
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String type = request.getParameter("type");
+        String email = request.getParameter("email");
+        String role = request.getParameter("type");
 
         try {
-            int id = Integer.parseInt(idStr);
-
-            // Create updated User object
-            User updatedUser = new User(id, username, password, type);
+            // Create updated User object (String id)
+            User updatedUser = new User(id, username, email, role);
 
             // Update the user using DAO
             UserDAO userDAO = new UserDAO();
@@ -44,7 +42,7 @@ public class EditUserServlet extends HttpServlet {
     }
 
     @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("manageUser.jsp");
     }

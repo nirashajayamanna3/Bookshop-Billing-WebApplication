@@ -19,7 +19,7 @@ public class AdduserServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // Get form parameters
-        
+        String id = request.getParameter("id");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
@@ -28,7 +28,7 @@ public class AdduserServlet extends HttpServlet {
             
 
             // Create User object
-            User user = new User( username, password, type);
+            User user = new User( id,username, password, type);
 
             // Insert user into DB using DAO
             UserDAO userDAO = new UserDAO();

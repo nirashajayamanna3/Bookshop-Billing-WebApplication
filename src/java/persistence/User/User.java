@@ -5,7 +5,7 @@
 package persistence.User;
 
 public class User {
-    private int id;
+    private String id;
     private String username;
     private String password;
     private String type;
@@ -18,15 +18,15 @@ public class User {
         this.type = type;
     }
 
-    public User(int id, String username, String password, String type) {
+    public User(String id, String username, String password, String type) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.type = type;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }

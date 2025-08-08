@@ -71,10 +71,10 @@
                 try {
                     con = DBConnection.getConnection();
                     stmt = con.createStatement();
-                    rs = stmt.executeQuery("SELECT * FROM users");
+                    rs = stmt.executeQuery("SELECT * FROM user");
 
                     while (rs.next()) {
-                        int id = rs.getInt("id");
+                        String id = rs.getString("id");
                         String username = rs.getString("username");
                         String password = rs.getString("password");
                         String type = rs.getString("type");

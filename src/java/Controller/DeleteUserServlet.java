@@ -14,11 +14,11 @@ public class DeleteUserServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idStr = request.getParameter("id");
+        String id = request.getParameter("id");
 
         try {
-            if (idStr != null && !idStr.isEmpty()) {
-                int id = Integer.parseInt(idStr);
+            if (id != null && !id.isEmpty()) {
+                
 
                 // Call DAO to delete the user
                 UserDAO userDAO = new UserDAO();
