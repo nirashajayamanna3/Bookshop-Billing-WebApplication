@@ -50,7 +50,7 @@
     <h1>Customer Details</h1>
     <table>
         <tr>
-            <th>ID</th>
+            
             <th>Account Number</th>
             <th>Name</th>
             <th>Address</th>
@@ -67,7 +67,7 @@
                 while (rs.next()) {
         %>
         <tr>
-            <td><%= rs.getInt("id") %></td>
+            
             <td><%= rs.getString("accountNumber") %></td>
             <td><%= rs.getString("name") %></td>
             <td><%= rs.getString("address") %></td>

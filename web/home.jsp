@@ -26,6 +26,25 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
         h2 {
             margin-bottom: 20px;
         }
@@ -107,10 +126,12 @@
 </head>
 <body>
 
-<h2>Sales Transaction</h2>
-<form action="LogoutServlet" method="get" style="margin: 0; text-align: right; ">
-            <input type="submit" value="Logout" class="logout-btn">
-        </form>
+<div class="header-bar">
+    <h2>Sales Transaction</h2>
+    <form action="LogoutServlet" method="get">
+        <input type="submit" value="Logout" class="logout-btn">
+    </form>
+</div>
 <div class="clearfix">
     <div class="left-panel">
         
@@ -257,7 +278,9 @@
                 <td>Rs<%= item.get("price") %></td>
                 <td><%= item.get("discount") %></td>
                 <td>Rs<%= subTotal %></td>
-                <td><form method="post" action="CartServlet"><button class="delete-btn" name="remove" value="<%= item.get("code") %>">🗑️</button></form></td>
+                <td><form method="post" action="DeleteItemServlet">
+                        <button name="product_code" value="<%= item.get("code") %>" class="delete-btn">🗑️</button>
+                    </form></td>
             </tr>
             <%
                     }
