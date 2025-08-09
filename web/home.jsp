@@ -293,7 +293,7 @@
         </table>
 
         <div class="action-btns">
-            <button class="update-btn">Update Quantity</button>
+            
             <button class="pay-btn">Pay</button>
             <button class="clear-btn" onclick="location.href='CartServlet?clear=true'">Clear Cart</button>
         </div>
