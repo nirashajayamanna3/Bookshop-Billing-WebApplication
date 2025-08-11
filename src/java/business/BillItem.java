@@ -1,73 +1,43 @@
 package business;
 
-import persistence.Product.Product;
+
 
 
 public class BillItem {
-    private String product_code;
-    private String product_name;
+    private String productCode;
+    private String productName;
     private int quantity;
-    private double unit_price;
-    private double discount;
-    private double tax;
-    private double subtotal;
-    private Product product;
+    private double unitPrice;
+    private double discount; // absolute or percent depending on your logic
 
-    public BillItem(String code, String name, int quantity, double unitPrice, double discount, double tax) {
-        this.product_code = code;
-        this.product_name = name;
+    public BillItem() {}
+
+    public BillItem(String productCode, String productName, int quantity, double unitPrice, double discount) {
+        this.productCode = productCode;
+        this.productName = productName;
         this.quantity = quantity;
-        this.unit_price = unitPrice;
+        this.unitPrice = unitPrice;
         this.discount = discount;
-        this.tax = tax;
-        this.subtotal = calculateSubtotal();
     }
 
-    BillItem() {
-        
-    }
+    public String getProductCode() { return productCode; }
+    public void setProductCode(String productCode) { this.productCode = productCode; }
 
-    private double calculateSubtotal() {
-        double total = quantity * unit_price;
-        double discountAmount = total * (discount / 100.0);
-        double taxAmount = (total - discountAmount) * (tax / 100.0);
-        return total - discountAmount + taxAmount;
-    }
+    public String getProductName() { return productName; }
+    public void setProductName(String productName) { this.productName = productName; }
 
-
-    public Product getProduct() { return product; }
     public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public double getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
+
     public double getDiscount() { return discount; }
-    public double getTax() { return tax; }
+    public void setDiscount(double discount) { this.discount = discount; }
 
-    public double getSubtotal() {
-        double base = product.getUnitPrice() * quantity;
-        double discounted = base - (base * discount / 100);
-        return discounted + (discounted * tax / 100);
-    }
-
-     // ✅ Implement these setters properly
-    public void setProduct(String productName) {
-        this.product_name = productName;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-        this.subtotal = calculateSubtotal();
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unit_price = unitPrice;
-        this.subtotal = calculateSubtotal();
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-        this.subtotal = calculateSubtotal();
-    }
-
-    public void setTax(double tax) {
-        this.tax = tax;
-        this.subtotal = calculateSubtotal();
+    public double getLineTotal() {
+        double total = unitPrice * quantity;
+        // If discount is percent (0-100) change logic accordingly. Here we treat discount as absolute amount per line.
+        return total - discount;
     }
 }

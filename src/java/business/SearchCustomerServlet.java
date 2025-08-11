@@ -15,11 +15,13 @@ public class SearchCustomerServlet extends HttpServlet {
         String phone = request.getParameter("phone");
 
         String customerName = customerDAO.getCustomerNameByPhone(phone);
+        String accountNumber = customerDAO.getCustomerNameByPhone(phone);
 
         HttpSession session = request.getSession();
         if (customerName != null) {
             session.setAttribute("customerName", customerName);
             session.setAttribute("customerPhone", phone);
+            session.setAttribute("accountNumber", accountNumber);
         } else {
             session.removeAttribute("customerName");
             session.removeAttribute("customerPhone");

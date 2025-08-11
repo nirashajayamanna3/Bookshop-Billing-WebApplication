@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sales Transaction</title>
+    <title>Pahana Edu Bookshop</title>
     <script>
         // Optional: client-side check
         function validatePhone() {
@@ -195,6 +195,7 @@
     <%
     String customerName = (String) session.getAttribute("customerName");
     String customerPhone = (String) session.getAttribute("customerPhone");
+    
     Boolean notFound = (Boolean) session.getAttribute("notFound");
 
     if (customerName != null) {
@@ -294,7 +295,11 @@
 
         <div class="action-btns">
             
-            <button class="pay-btn">Pay</button>
+            
+<!--               <form action="/PayServlet" method="post">-->
+                    <button type="submit" class="pay-btn"onclick="location.href='Invoice.jsp'" >Pay</button>
+<!--                  </form>-->
+            
             <button class="clear-btn" onclick="location.href='CartServlet?clear=true'">Clear Cart</button>
         </div>
     </div>

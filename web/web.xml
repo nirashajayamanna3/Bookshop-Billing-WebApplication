@@ -55,8 +55,19 @@
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/home</url-pattern>
 </servlet-mapping>
-        
-	
+
+ <servlet>
+        <servlet-name>PayServlet</servlet-name>
+        <servlet-class>servlets.PayServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PayServlet</servlet-name>
+        <url-pattern>/pay</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+
+
     
 </web-app>
 
