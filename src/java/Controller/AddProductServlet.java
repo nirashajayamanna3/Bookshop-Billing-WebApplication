@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -35,7 +36,13 @@ public class AddProductServlet extends HttpServlet {
             ProductDAO productDAO = new ProductDAO();
             productDAO.addProduct(product);
 
-            response.sendRedirect("manageProducts.jsp");
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script type='text/javascript'>");
+            out.println("alert('Add Product successfully');");
+            out.println("window.location = 'manageProducts.jsp';");
+            out.println("</script>");
+            out.close();
 
         } catch (Exception e) {
             e.printStackTrace();

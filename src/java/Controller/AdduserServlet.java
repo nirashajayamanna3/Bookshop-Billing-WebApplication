@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -35,7 +36,13 @@ public class AdduserServlet extends HttpServlet {
             userDAO.addUser(user); // <-- FIXED METHOD NAME
 
             // Redirect to user list or success page
-            response.sendRedirect("manageUser.jsp");
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script type='text/javascript'>");
+            out.println("alert('Add User successfully');");
+            out.println("window.location = 'manageUser.jsp';");
+            out.println("</script>");
+            out.close();
 
         } catch (Exception e) {
             e.printStackTrace();

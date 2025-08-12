@@ -54,7 +54,7 @@
     <h3 style="padding-left:10px;">Pahana Edu Bookshop</h3>
     <a href="AdminDashboard.jsp">🏠 Home</a>
     <a href="manageUser.jsp">👥 User</a>
-    <a href="manageProduct.jsp">📦 Product</a>
+    <a href="manageProducts.jsp">📦 Product</a>
     <a href="manageCustomer.jsp">👥 Customer</a>
     <a href="manageBill.jsp">📒 Bill</a>
     <a href="AdminDashboard.jsp">📊 REPORTS</a>

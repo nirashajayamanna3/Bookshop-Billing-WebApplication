@@ -38,12 +38,22 @@ public class LoginServlet extends HttpServlet {
 
             if (rs.next()) {
                 if ("cashier".equalsIgnoreCase(type)) {
-                    response.sendRedirect("home.jsp");
+                    out.println("<script type='text/javascript'>");
+                    out.println("alert('Successful login in home page');");
+                    out.println("window.location = 'home.jsp';");
+                    out.println("</script>");
                 } else if ("manager".equalsIgnoreCase(type)) {
-                    response.sendRedirect("adminDashboard.jsp");
+                    out.println("<script type='text/javascript'>");
+                    out.println("alert('Successful login in Admin Dashboard');");
+                    out.println("window.location = 'adminDashboard.jsp';");
+                    out.println("</script>");
                 } else {
-                    out.println("<h3>Invalid user role type!</h3><a href='login.jsp'>Back</a>");
+                    out.println("<script type='text/javascript'>");
+                    out.println("alert('Invalid user role type!');");
+                    out.println("window.location = 'login.jsp';");
+                    out.println("</script>");
                 }
+                
             } else {
                 out.println("<h3>Login Failed! Invalid username, password or role.</h3><a href='login.jsp'>Try Again</a>");
             }

@@ -36,6 +36,20 @@
         .total {
             font-weight: bold;
         }
+        .print-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .no-print {
+            display: block;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
         .footer {
             margin-top: 20px;
             text-align: center;
@@ -97,7 +111,7 @@
                         totalInv += subtotal;
             %>
             <tr>
-                <td><%= code %></td>
+                <td><%= item.getProductCode() %></td>
                 <td><%= name %></td>
                 <td><%= qty %></td>
                 <td>Rs<%= String.format("%.2f", price) %></td>
@@ -119,7 +133,10 @@
                 <td><strong>Rs<%= String.format("%.2f", totalInv) %></strong></td>
             </tr>
         </table>
-
+        <div class="print-btn no-print">
+            <button onclick="window.print()">Print Bill</button>
+            <button onclick="window.location.href='home.jsp'">Back</button>
+        </div>
         <div class="footer">
             <p>Thank you for your purchase!</p>
         </div>

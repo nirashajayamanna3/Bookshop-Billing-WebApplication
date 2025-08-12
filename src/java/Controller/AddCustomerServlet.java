@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,13 @@ public class AddCustomerServlet extends HttpServlet {
             customerDAO.addCustomer(customer);
 
             // Redirect after successful insert
-            response.sendRedirect("CustomerDetails.jsp");
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script type='text/javascript'>");
+            out.println("alert('Add customer successfully');");
+            out.println("window.location = 'CustomerDetails.jsp';");
+            out.println("</script>");
+            out.close();
 
         } catch (Exception e) {
             e.printStackTrace();
