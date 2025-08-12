@@ -8,21 +8,50 @@
 <head>
     <title>Manage Users</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .sidebar {
-            width: 200px;
-            float: left;
-            background-color: #f1f1f1;
-            height: 100vh;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #000;
-            border-bottom: 1px solid #ccc;
-        }
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+    .sidebar {
+        width: 220px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: #2c3e50;
+        padding-top: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .sidebar h3 {
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: #ecf0f1;
+        font-size: 16px;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #34495e;
+        border-left: 4px solid #1abc9c;
+    }
+    .logout-btn {
+        padding: 8px 16px;
+        background-color: #e74c3c;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        margin: 10px auto;
+        display: block;
+        width: 80%;
+    }
         table {
             width: 80%;
             border-collapse: collapse;
@@ -49,6 +78,9 @@
         <a href="#">📒 Bill</a>
         <a href="adminDashboard.jsp">📊 REPORTS</a>
         <a href="adminDashboard.jsp">📈 Charts</a>
+        <form action="LogoutServlet" method="get">
+            <input type="submit" value="Logout" class="logout-btn">
+        </form>
     </div>
 
     <div style="margin-left:220px; padding:20px;">
