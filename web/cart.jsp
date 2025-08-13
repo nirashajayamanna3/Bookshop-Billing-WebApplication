@@ -322,9 +322,14 @@
                <button class="print" onclick="window.print()">Print Bill</button>
 
                 <button class="clear-btn" onclick="location.href='CartServlet?clear=true'">Clear Cart</button>
-                
+                <form action="CheckoutServlet" method="post" style="display:inline;">
+                <input type="hidden" name="customerName" value="<%= customerName %>">
+                <input type="hidden" name="customerPhone" value="<%= customerPhone %>">
+                <input type="hidden" name="totalAmount" value="<%= total %>">
+                <button type="submit" class="pay-btn">Pay</button>
+            </form>
             </div>
        </div>
-    </div>
+    
 </body>
 </html>

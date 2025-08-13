@@ -85,7 +85,7 @@
 <body>
 
 <div class="header-bar">
-    <h2>Available Products</h2>
+    <h2>Products</h2>
     <a href="cart.jsp">Go to Cart</a>
     <form action="LogoutServlet" method="get">
         <input type="submit" value="Logout" class="logout-btn">

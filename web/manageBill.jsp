@@ -111,15 +111,15 @@
                 try {
                     Connection con = DBConnection.getConnection();
                     Statement st = con.createStatement();
-                    String sql = "SELECT billId, customerName, customerPhone, billDate, totalAmount FROM bill";
+                    String sql = "SELECT bill_id, customer_name, customer_phone, bill_date, total_amount FROM bill";
                     ResultSet rs = st.executeQuery(sql);
 
                     while (rs.next()) {
-                        int billId = rs.getInt("billId");
-                        String name = rs.getString("customerName");
-                        String phone = rs.getString("CustomerPhone");
-                        String date = rs.getString("billDate");
-                        double total = rs.getDouble("totalAmount");
+                        int billId = rs.getInt("bill_id");
+                        String name = rs.getString("customer_name");
+                        String phone = rs.getString("customer_phone");
+                        String date = rs.getString("bill_date");
+                        double total = rs.getDouble("total_amount");
                         
             %>
             <tr>
