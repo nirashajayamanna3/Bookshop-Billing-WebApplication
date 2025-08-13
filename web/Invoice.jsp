@@ -40,11 +40,9 @@
             margin-top: 20px;
             text-align: center;
         }
-
         .no-print {
             display: block;
         }
-
         @media print {
             .no-print {
                 display: none;
@@ -79,13 +77,11 @@
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             String formattedDate = sdf.format(new Date());
         %>
-
         <h2>Pahana Edu Bookshop</h2>
         <p><b>INVOICE TO:</b><br>
         <%= customerNameInv != null ? customerNameInv : "Walk-in Customer" %><br>
         Phone: <%= customerPhoneInv != null ? customerPhoneInv : "" %></p>
         <p>Invoice No: <%= billIdStr %></p>
-
         <p>Date: <%= formattedDate %></p>
 
         <h3>Purchased Items</h3>
@@ -106,12 +102,11 @@
                         double price = item.getUnitPrice();
                         int qty = item.getQuantity();
                         double discount = item.getDiscount();
-
                         double subtotal = price * qty * (1 - discount / 100.0);
                         totalInv += subtotal;
             %>
             <tr>
-                <td><%= item.getProductCode() %></td>
+                <td><%= code %></td>
                 <td><%= name %></td>
                 <td><%= qty %></td>
                 <td>Rs<%= String.format("%.2f", price) %></td>

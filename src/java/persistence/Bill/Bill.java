@@ -1,11 +1,14 @@
 package persistence.Bill;
 
+import java.sql.Timestamp;
+
 public class Bill {
     private String billId;
     private String name;
     private String accountNumber;
     private String phone;
     private double totalAmount;
+    private Timestamp billDate;
     private BillStatus status;
 
     public Bill() {
@@ -59,6 +62,13 @@ public class Bill {
     }
      public void setAccoountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+     public Timestamp getBillDate() {
+        
+        return billDate;
+    }
+    public void setBillDate(Timestamp timestamp) {
+        this.billDate= timestamp;
     }
 
     

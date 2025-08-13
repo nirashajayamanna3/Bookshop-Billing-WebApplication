@@ -26,7 +26,7 @@ public class DeleteItemServlet extends HttpServlet {
            session.setAttribute("cart", cart);
        }
 
-       response.sendRedirect("home.jsp");
+       response.sendRedirect("cart.jsp");
    }
 }
 

@@ -3,12 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/BillDAO.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/home.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageCustomer.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/CheckoutServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/BillItem.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/EditCustomerServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/UpdateBill.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/editCustomer.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/Bill.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageBill.jsp</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/PayServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/web.xml</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/Invoice.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/LogoutServlet.java</file>
             <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/login.jsp</file>
         </group>
     </open-files>

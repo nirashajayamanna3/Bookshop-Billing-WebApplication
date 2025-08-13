@@ -87,15 +87,14 @@
         <a href="manageProducts.jsp">📦 Product</a>
         <a href="manageCustomer.jsp">👥 Customer</a>
         <a href="#">📒 Bill</a>
-        <a href="adminDashboard.jsp">📊 REPORTS</a>
-        <a href="adminDashboard.jsp">📈 Charts</a>
+        
         <form action="LogoutServlet" method="get">
             <input type="submit" value="Logout" class="logout-btn">
         </form>
     </div>
 
     <div style="margin-left:220px; padding:20px;">
-        <h2 align="center">Manage Bills</h2>
+        <h2 align="center">Bill History</h2>
         
         <table>
             <tr>
@@ -104,15 +103,15 @@
                 <th>Customer Phone</th>
                 <th>Bill Date</th>
                 <th>Total Amount</th>
-                <th>Status</th>
-                <th>Actions</th>
+               
+                
             </tr>
 
             <%
                 try {
                     Connection con = DBConnection.getConnection();
                     Statement st = con.createStatement();
-                    String sql = "SELECT billId, customerName, customerPhone, billDate, totalAmount, status FROM bill";
+                    String sql = "SELECT billId, customerName, customerPhone, billDate, totalAmount FROM bill";
                     ResultSet rs = st.executeQuery(sql);
 
                     while (rs.next()) {
@@ -121,7 +120,7 @@
                         String phone = rs.getString("CustomerPhone");
                         String date = rs.getString("billDate");
                         double total = rs.getDouble("totalAmount");
-                        String status = rs.getString("status");
+                        
             %>
             <tr>
                 <form action="UpdateBillServlet" method="post">
@@ -130,14 +129,8 @@
                     <td><%= phone %></td>
                     <td><%= date %></td>
                     <td><%= String.format("%.2f", total) %></td>
-                   <td><%= status %></td>
-                    <td>
-                        <input type="hidden" name="billId" value="<%= billId %>">
-                        <button type="submit" class="btn btn-update">Update</button>
-                        <a href="DeleteBillServlet?billId=<%= billId %>" 
-                           onclick="return confirm('Are you sure you want to delete this bill?')"
-                           class="btn btn-delete">Delete</a>
-                    </td>
+                   
+                    
                 </form>
             </tr>
             <%

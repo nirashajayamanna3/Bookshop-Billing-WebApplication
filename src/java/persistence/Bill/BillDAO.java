@@ -2,38 +2,32 @@ package persistence.Bill;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Date;
+import java.sql.Timestamp;
 import persistence.DBConnection;
 
 public class BillDAO {
 
-    public int saveBill(Bill bill) throws SQLException {
-        // Match column names in DB exactly
-        String sql = "INSERT INTO bill (billId,accountNumber, name, total, date,status) VALUES (?, ?, ?, ?,?,?)";
+    public static void saveBill(String customerName, String customerPhone, Date billDate, double totalAmount) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try {
+            conn = DBConnection.getConnection();
+            String sql = "INSERT INTO bill (customer_name, customer_phone, bill_date, total_amount) VALUES (?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
 
-            
-            ps.setString(1, bill.getBillId());
-            ps.setString(3, bill.getCustomerName());
-            ps.setString(2, bill.getAccountNumber());
-            ps.setString(4, bill.getPhone());
-            ps.setDouble(5, bill.getTotalAmount());
-            ps.setString(6, bill.getStatus().name()); // Enum -> String
+            pstmt.setString(1, customerName);
+            pstmt.setString(2, customerPhone);
+            pstmt.setTimestamp(3, new Timestamp(billDate.getTime()));
+            pstmt.setDouble(4, totalAmount);
 
-            int rowsAffected = ps.executeUpdate();
+            pstmt.executeUpdate();
 
-            if (rowsAffected > 0) {
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        return rs.getInt(1);
-                    }
-                }
-            }
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
         }
-        return -1;
     }
 }

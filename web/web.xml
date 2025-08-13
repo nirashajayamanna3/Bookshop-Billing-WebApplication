@@ -64,6 +64,16 @@
         <servlet-name>PayServlet</servlet-name>
         <url-pattern>/pay</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>UpdateBillServlet</servlet-name>
+    <servlet-class>controller.UpdateBillServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>UpdateBillServlet</servlet-name>
+    <url-pattern>/UpdateBill</url-pattern>
+</servlet-mapping>
+
 </web-app>
 
 
