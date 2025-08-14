@@ -95,6 +95,19 @@
     </style>
 </head>
 <body>
+    <h3>Pahana Edu Bookshop</h3>
+     <div class="sidebar">
+        <h3>Pahana Edu Bookshop</h3>
+        <a href="adminDashboard.jsp">🏠 Home</a>
+        <a href="manageUser.jsp">👥 User</a>
+        <a href="manageProducts.jsp">📦 Product</a>
+        <a href="manageCustomer.jsp">🧾 Customer</a>
+        <a href="manageBill.jsp">📒 Bill</a>
+         <a href="manageSuppliers.jsp">👥 Supplier</a>
+        <form action="LogoutServlet" method="get">
+            <input type="submit" value="Logout" class="logout-btn">
+        </form>
+    </div>
     <div class="container">
         <h2>Edit Product</h2>
         <form action="EditProductServlet" method="post">

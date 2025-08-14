@@ -12,9 +12,6 @@
     int totalCustomers = 0;
     int totalBills = 0;
 
-    // Map to hold bill statuses and their counts for the pie chart
-    Map<String, Integer> billStatusCounts = new HashMap<>();
-
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -39,13 +36,6 @@
         ResultSet rs4 = ps4.executeQuery();
         if (rs4.next()) totalBills = rs4.getInt(1);
 
-        // Query bill status counts for pie chart
-        Statement st = conn.createStatement();
-        ResultSet rsStatus = st.executeQuery("SELECT status, COUNT(*) AS count FROM bill GROUP BY status");
-        while (rsStatus.next()) {
-            billStatusCounts.put(rsStatus.getString("status"), rsStatus.getInt("count"));
-        }
-
         conn.close();
     } catch (Exception e) {
         e.printStackTrace();
@@ -56,32 +46,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
-
-<!-- Google Charts -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Status', 'Count'],
-      <% for (Map.Entry<String, Integer> entry : billStatusCounts.entrySet()) { %>
-        ['<%= entry.getKey() %>', <%= entry.getValue() %>],
-      <% } %>
-    ]);
-
-    var options = {
-      title: 'Bill Status Distribution',
-      pieHole: 0.4,
-      colors: ['#1abc9c', '#3498db', '#e74c3c', '#f39c12', '#9b59b6', '#34495e'],
-      chartArea: {width: '90%', height: '80%'}
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-    chart.draw(data, options);
-  }
-</script>
 
 <style>
     body {
@@ -151,7 +115,7 @@
         padding: 15px;
         border-radius: 8px;
         box-shadow: 0 2px 2px rgba(0,0,0,0.1);
-        width: 23%;
+        width: 50%;
         text-align: center;
         font-size: 18px;
         font-weight: bold;
@@ -169,21 +133,10 @@
     .stat-card:nth-child(2) { animation-delay: 0.6s; }
     .stat-card:nth-child(3) { animation-delay: 1.0s; }
     .stat-card:nth-child(4) { animation-delay: 1.4s; }
-
-    /* Chart card styling */
-    .chart-card {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-top: 30px;
-        padding: 20px;
-        max-width: 600px;
-    }
 </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
     <div class="sidebar">
         <h3>Pahana Edu Bookshop</h3>
         <a href="adminDashboard.jsp">🏠 Home</a>
@@ -191,13 +144,12 @@
         <a href="manageProducts.jsp">📦 Product</a>
         <a href="manageCustomer.jsp">🧾 Customer</a>
         <a href="manageBill.jsp">📒 Bill</a>
-       
+        <a href="manageSuppliers.jsp">📒 Bill</a>
         <form action="LogoutServlet" method="get">
             <input type="submit" value="Logout" class="logout-btn">
         </form>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <div class="header">Welcome, Admin</div>
 
@@ -206,10 +158,6 @@
             <div class="stat-card">Total Products<br><%= totalProducts %></div>
             <div class="stat-card">Total Customers<br><%= totalCustomers %></div>
             <div class="stat-card">Total Bills<br><%= totalBills %></div>
-        </div>
-
-        <div class="chart-card">
-            <div id="piechart" style="width: 100%; height: 400px;"></div>
         </div>
     </div>
 

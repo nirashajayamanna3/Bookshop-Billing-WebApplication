@@ -1,16 +1,7 @@
-<%@page import="persistence.customer.customerDAO"%>
-<%@page import="persistence.customer.customer"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    String accountNumber = request.getParameter("accountNumber");
-    customerDAO dao = new customerDAO();
-    customer customer = dao.getCustomerByAccountNumber(accountNumber);
-%>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Customer</title>
+    <title>Add Supplier</title>
     <style>
         body {
         margin: 0;
@@ -55,18 +46,11 @@
         margin: 10px auto;
         display: block;
         width: 80%;
-    }        input[type="text"], input[type="email"] {
-            width: 300px;
-            padding: 8px;
-            margin: 5px 0;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-        }
+    }
     </style>
 </head>
 <body>
-    <div class="sidebar">
+ <div class="sidebar">
         <h3>Pahana Edu Bookshop</h3>
         <a href="adminDashboard.jsp">🏠 Home</a>
         <a href="manageUser.jsp">👥 User</a>
@@ -78,29 +62,25 @@
             <input type="submit" value="Logout" class="logout-btn">
         </form>
     </div>
-    <div style="margin-left:500px; padding:20px;">
-        <h2 >Edit Customer</h2>
-    
-    <form action="EditCustomerServlet" method="post">
-        <label>Account Number:</label><br>
-        <input type="text" name="accountNumber" value="<%=customer.getAccountNumber()%>" readonly><br>
+<h2 style="text-align:center;">Add New Supplier</h2>
+<form style="width:300px; margin: auto;">
+    <label>Name:</label><br>
+    <input type="text" name="name"><br><br>
 
-        <label>Name:</label><br>
-        <input type="text" name="name" value="<%=customer.getName()%>" required><br>
+    <label>Contact Person:</label><br>
+    <input type="text" name="contactPerson"><br><br>
 
-        <label>Address:</label><br>
-        <input type="text" name="address" value="<%=customer.getAddress()%>" required><br>
+    <label>Phone:</label><br>
+    <input type="text" name="phone"><br><br>
 
-        <label>Phone:</label><br>
-        <input type="text" name="phone" value="<%=customer.getPhone()%>" required><br>
+    <label>Email:</label><br>
+    <input type="email" name="email"><br><br>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" value="<%=customer.getEmail()%>" required><br>
+    <label>Address:</label><br>
+    <textarea name="address"></textarea><br><br>
 
-        <input type="submit" value="Update">
-    </form>
-    <br>
-    <a href="manageCustomer.jsp">🔙 Back to Customer List</a>
-    </div>
+    <input type="submit" value="Save">
+    <a href="supplierList.jsp">Cancel</a>
+</form>
 </body>
 </html>

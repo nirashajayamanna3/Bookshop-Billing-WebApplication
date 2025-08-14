@@ -12,6 +12,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
+            
         }
         .sidebar {
             width: 220px;
@@ -53,6 +54,7 @@
             width: 80%;
         }
         table {
+            
             width: 80%;
             border-collapse: collapse;
             margin: 20px auto;
@@ -87,6 +89,7 @@
         <a href="manageProducts.jsp">📦 Product</a>
         <a href="manageCustomer.jsp">👥 Customer</a>
         <a href="#">📒 Bill</a>
+        <a href="manageSuppliers.jsp">👥 Supplier</a>
         
         <form action="LogoutServlet" method="get">
             <input type="submit" value="Logout" class="logout-btn">

@@ -79,18 +79,19 @@
     </style>
 </head>
 <body>
+    <h3>Pahana Edu Bookshop</h3>
     <div class="sidebar">
-        <h3 style="padding-left:10px;">Pahana Edu Bookshop</h3>
+        <h3>Pahana Edu Bookshop</h3>
         <a href="adminDashboard.jsp">🏠 Home</a>
         <a href="manageUser.jsp">👥 User</a>
-        <a href="manageProduct.jsp">📦 Product</a>
-        <a href="manageCustomer.jsp">👥 Customer</a>
+        <a href="manageProducts.jsp">📦 Product</a>
+        <a href="manageCustomer.jsp">🧾 Customer</a>
         <a href="manageBill.jsp">📒 Bill</a>
-        <a href="adminDashboard.jsp">📊 REPORTS</a>
-        <a href="adminDashboard.jsp">📈 Charts</a>
-        
+         <a href="manageSuppliers.jsp">👥 Supplier</a>
+        <form action="LogoutServlet" method="get">
+            <input type="submit" value="Logout" class="logout-btn">
+        </form>
     </div>
-
     <div class="form-container">
         <h2 align="center">Add New Product</h2>
         <form action="AddProductServlet" method="post">

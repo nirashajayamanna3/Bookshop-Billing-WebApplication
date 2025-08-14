@@ -75,6 +75,7 @@
         <a href="#">📦 Product</a>
         <a href="manageCustomer.jsp">👥 Customer</a>
         <a href="manageBill.jsp">📒 Bill</a>
+          <a href="manageSuppliers.jsp">👥 Supplier</a>
         
         <form action="LogoutServlet" method="get">
             <input type="submit" value="Logout" class="logout-btn">

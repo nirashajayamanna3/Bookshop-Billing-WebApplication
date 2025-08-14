@@ -212,6 +212,7 @@
 <body>
 
     <h3>Sales Transaction</h3>
+    <h1>Pahana Edu Bookshop</h1>
     
     <div class="no-print">
         <div class="customer-form">
