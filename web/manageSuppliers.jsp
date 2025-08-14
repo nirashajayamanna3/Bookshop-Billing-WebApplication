@@ -1,4 +1,15 @@
+<%@page import="persistence.Supplier.Supplier"%>
+<%@page import="java.util.List"%>
+<%@page import="persistence.Supplier.SupplierDAO"%>
+<%@page import="persistence.DBConnection"%>
+<%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    Connection conn = DBConnection.getConnection();
+    SupplierDAO dao = new SupplierDAO(conn);
+    List<Supplier> suppliers = dao.getAllSuppliers();
+%>
 <html>
 <head>
     <title>Suppliers List</title>
@@ -51,11 +62,11 @@
         text-align: center;
             width: 65%;
             border-collapse: collapse;
-            margin: 40px auto;
+            margin: 20px auto;
         }
         th, td {
             border: 1px solid #ccc;
-            padding: 5px;
+            padding: 8px;
             text-align: center;
         }
         th {
@@ -91,30 +102,26 @@
         <th>Address</th>
         <th>Actions</th>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>ABC Traders</td>
-        <td>John Doe</td>
-        <td>0771234567</td>
-        <td>abc@gmail.com</td>
-        <td>Colombo</td>
+    <%
+        for (Supplier s : suppliers) {
+    %>
+     <tr>
+        <td><%= s.getId() %></td>
+        <td><%= s.getCompanyName() %></td>
+        <td><%= s.getContactPerson() %></td>
+        <td><%= s.getPhone() %></td>
+        <td><%= s.getEmail() %></td>
+        <td><%= s.getAddress() %></td>
         <td>
-            <a href="editSupplier.jsp?id=1">Edit</a>
-            <button onclick="return confirm('Delete this supplier?')">Delete</button>
+            <a href="editSupplier.jsp?id=<%= s.getId() %>">Edit</a>
+            <form action="SupplierServlet" method="post" style="display:inline;">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="id" value="<%= s.getId() %>">
+                <input type="submit" value="Delete" onclick="return confirm('Delete this supplier?')">
+            </form>
         </td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>XYZ Supplies</td>
-        <td>Jane Smith</td>
-        <td>0777654321</td>
-        <td>xyz@gmail.com</td>
-        <td>Kandy</td>
-        <td>
-            <a href="editSupplier.jsp?id=2">Edit</a>
-            <button onclick="return confirm('Delete this supplier?')">Delete</button>
-        </td>
-    </tr>
+     </tr>
+      <% } %>
 </table>
 </body>
 </html>

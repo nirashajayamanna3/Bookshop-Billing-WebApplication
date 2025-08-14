@@ -1,4 +1,14 @@
+<%@page import="persistence.Supplier.Supplier"%>
+<%@page import="persistence.Supplier.SupplierDAO"%>
+<%@page import="persistence.DBConnection"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    int id = Integer.parseInt(request.getParameter("id"));
+    SupplierDAO dao = new SupplierDAO(DBConnection.getConnection());
+    Supplier s = dao.getSupplierById(id);
+%>
+<!DOCTYPE>
 <html>
 <head>
     <title>Edit Supplier</title>
@@ -71,26 +81,16 @@
         </form>
     </div>
 <h2 style="text-align:center;">Edit Supplier</h2>
-<form style="width:300px; margin: auto;">
-    <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
 
-    <label>Name:</label><br>
-    <input type="text" name="name" value="ABC Traders"><br><br>
-
-    <label>Contact Person:</label><br>
-    <input type="text" name="contactPerson" value="John Doe"><br><br>
-
-    <label>Phone:</label><br>
-    <input type="text" name="phone" value="0771234567"><br><br>
-
-    <label>Email:</label><br>
-    <input type="email" name="email" value="abc@gmail.com"><br><br>
-
-    <label>Address:</label><br>
-    <textarea name="address">Colombo</textarea><br><br>
-
+   <form  style="width:300px; margin: auto;" action="SupplierServlet" method="post">
+    <input type="hidden" name="action" value="update">
+    <input type="hidden" name="id" value="<%= s.getId() %>">
+    Name: <input type="text" name="name" value="<%= s.getCompanyName() %>"><br>
+    Contact Person: <input type="text" name="contactPerson" value="<%= s.getContactPerson() %>"><br>
+    Phone: <input type="text" name="phone" value="<%= s.getPhone() %>"><br>
+    Email: <input type="text" name="email" value="<%= s.getEmail() %>"><br>
+    Address: <input type="text" name="address" value="<%= s.getAddress() %>"><br>
     <input type="submit" value="Update">
-    <a href="supplierList.jsp">Cancel</a>
 </form>
 </body>
 </html>

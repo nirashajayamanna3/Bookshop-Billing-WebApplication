@@ -47,6 +47,21 @@
         display: block;
         width: 80%;
     }
+    input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -63,24 +78,16 @@
         </form>
     </div>
 <h2 style="text-align:center;">Add New Supplier</h2>
-<form style="width:300px; margin: auto;">
-    <label>Name:</label><br>
-    <input type="text" name="name"><br><br>
 
-    <label>Contact Person:</label><br>
-    <input type="text" name="contactPerson"><br><br>
-
-    <label>Phone:</label><br>
-    <input type="text" name="phone"><br><br>
-
-    <label>Email:</label><br>
-    <input type="email" name="email"><br><br>
-
-    <label>Address:</label><br>
-    <textarea name="address"></textarea><br><br>
-
+    <form style="width:300px; margin: auto;" action="SupplierServlet" method="post">
+    <input type="hidden" name="action" value="add">
+    Name: <input type="text" name="name"><br>
+    Contact Person: <input type="text" name="contactPerson"><br>
+    Phone: <input type="text" name="phone"><br>
+    Email: <input type="text" name="email"><br>
+    Address: <input type="text" name="address"><br>
     <input type="submit" value="Save">
-    <a href="supplierList.jsp">Cancel</a>
 </form>
+    
 </body>
 </html>
