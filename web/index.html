@@ -1,12 +1,48 @@
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Pahana Edu Bookshop</title>
+			<meta charset="UTF-8">
+			<meta name="viewport"
+				content="width=device-width, initial-scale=1.0">
+			<style>
+				body { margin: 0; padding: 0; height: 90vh;
+				background-image: url('images/photo.jpg'); /* Make sure
+				this path is correct */ background-size: cover;
+				background-position: center; background-repeat:
+				no-repeat; font-family: Arial, sans-serif; display:
+				flex; align-items: center; justify-content: center;
+				flex-direction: column; text-align: center; }
+
+				img { width: auto; height: 250px; margin-bottom: 5px; }
+
+				h1 { font-size: 40px; color: white; text-shadow: 2px 2px
+				4px #000; margin-bottom: 30px; }
+
+				button { padding: 10px 20px; font-size: 18px;
+				background-color: #f58220; border: none; border-radius:
+				5px; cursor: pointer; }
+
+				button a { text-decoration: none; color: white;
+				font-weight: bold; }
+
+				button:hover { background-color: #e06b00; }
+                                .help{
+                                    background-color: blue;
+                                    color: white;
+                                }
+			</style>
+		</head>
+		<body>
+			<img src="images/logo.png" alt="Pahana Edu Logo">
+			<h1>Pahana Edu Bookshop</h1>
+			<button onclick="location.href='login.jsp'">
+    			Get Started
+			</button><br/>
+                        <button  class="help" onclick="location.href='help.jsp'">
+    			Help
+			</button>
+		</body>
+	</html>
