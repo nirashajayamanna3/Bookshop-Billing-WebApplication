@@ -28,7 +28,11 @@ public class SupplierServlet extends HttpServlet {
                 s.setEmail(request.getParameter("email"));
                 s.setAddress(request.getParameter("address"));
                 dao.addSupplier(s);
-                response.sendRedirect("manageSuppliers.jsp");
+                response.setContentType("text/html");
+                response.getWriter().println("<script type='text/javascript'>");
+                response.getWriter().println("alert('Supplier added successfully!');");
+                response.getWriter().println("window.location = 'manageSuppliers.jsp';");
+                response.getWriter().println("</script>");
 
             } else if ("update".equals(action)) {
                 Supplier s = new Supplier();
@@ -39,12 +43,20 @@ public class SupplierServlet extends HttpServlet {
                 s.setEmail(request.getParameter("email"));
                 s.setAddress(request.getParameter("address"));
                 dao.updateSupplier(s);
-                response.sendRedirect("manageSuppliers.jsp");
+                response.setContentType("text/html");
+                response.getWriter().println("<script type='text/javascript'>");
+                response.getWriter().println("alert('Supplier Update successfully!');");
+                response.getWriter().println("window.location = 'manageSuppliers.jsp';");
+                response.getWriter().println("</script>");
 
             } else if ("delete".equals(action)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 dao.deleteSupplier(id);
-                response.sendRedirect("manageSuppliers.jsp");
+                response.setContentType("text/html");
+                response.getWriter().println("<script type='text/javascript'>");
+                response.getWriter().println("alert('Supplier Delete successfully!');");
+                response.getWriter().println("window.location = 'manageSuppliers.jsp';");
+                response.getWriter().println("</script>");
             }
 
         } catch (Exception e) {
