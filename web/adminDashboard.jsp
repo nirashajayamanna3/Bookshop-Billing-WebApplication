@@ -11,13 +11,14 @@
     int totalProducts = 0;
     int totalCustomers = 0;
     int totalBills = 0;
+    int totalSuppliers = 0;
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
 
         // Count total users
-        PreparedStatement ps1 = conn.prepareStatement("SELECT COUNT(*) FROM user");
+        PreparedStatement ps1 = conn.prepareStatement("SELECT COUNT(*) FROM user_new");
         ResultSet rs1 = ps1.executeQuery();
         if (rs1.next()) totalUsers = rs1.getInt(1);
 
@@ -35,6 +36,13 @@
         PreparedStatement ps4 = conn.prepareStatement("SELECT COUNT(*) FROM bill");
         ResultSet rs4 = ps4.executeQuery();
         if (rs4.next()) totalBills = rs4.getInt(1);
+        
+        
+        // Count total Suppliers
+        PreparedStatement ps5 = conn.prepareStatement("SELECT COUNT(*) FROM suppliers");
+        ResultSet rs5 = ps5.executeQuery();
+        if (rs5.next()) totalSuppliers = rs5.getInt(1); // ✅ correct variable
+
 
         conn.close();
     } catch (Exception e) {
@@ -133,6 +141,7 @@
     .stat-card:nth-child(2) { animation-delay: 0.6s; }
     .stat-card:nth-child(3) { animation-delay: 1.0s; }
     .stat-card:nth-child(4) { animation-delay: 1.4s; }
+    .stat-card:nth-child(5) { animation-delay: 1.8s; }
 </style>
 </head>
 <body>
@@ -158,6 +167,7 @@
             <div class="stat-card">Total Products<br><%= totalProducts %></div>
             <div class="stat-card">Total Customers<br><%= totalCustomers %></div>
             <div class="stat-card">Total Bills<br><%= totalBills %></div>
+            <div class="stat-card">Total Suppliers<br><%= totalSuppliers %></div>
         </div>
     </div>
 

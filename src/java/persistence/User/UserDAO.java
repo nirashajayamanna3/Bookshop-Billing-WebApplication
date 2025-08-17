@@ -1,66 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistence.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import persistence.DBConnection;
 
 public class UserDAO {
+    private Connection conn;
 
-    // Replace with your actual DB connection details
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bookstore";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = ""; // Your DB password
-
-    // Helper method to connect to the database
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
+    // Constructor to accept a connection
+    public UserDAO(Connection conn) {
+        this.conn = conn;
     }
 
-    // Insert a new user
+    // Get all users
     public List<User> getAllUsers() throws SQLException {
-    List<User> users = new ArrayList<>();
-    String sql = "SELECT * FROM user";
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM user_new";
 
-    try (Connection conn = getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql);
-         ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            User user = new User();
-            user.setId(rs.getString("id"));
-            user.setUsername(rs.getString("username"));
-            user.setPassword(rs.getString("password"));
-            user.setType(rs.getString("type"));
-
-            users.add(user); // ✅ Corrected line
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setType(rs.getString("type"));
+                users.add(user);
+            }
         }
+
+        return users;
     }
 
-    return users;
-}
-
-
-    // Retrieve one user by id (optional, for search/update)
-    public User getUserByID(String id) throws SQLException {
-        String sql = "SELECT * FROM user WHERE id = ?";
+    // Get one user by ID
+    public User getUserByID(int id) throws SQLException {
+        String sql = "SELECT * FROM user_new WHERE id = ?";
         User user = null;
 
-        try (Connection conn = getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, id);
+            stmt.setInt(1, id);
+
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     user = new User();
-                    user.setId(rs.getString("id"));
+                    user.setId(rs.getInt("id"));
+                    user.setName(rs.getString("name"));
                     user.setUsername(rs.getString("username"));
                     user.setPassword(rs.getString("password"));
                     user.setType(rs.getString("type"));
-                    
                 }
             }
         }
@@ -68,39 +61,14 @@ public class UserDAO {
         return user;
     }
 
-    // Delete a user
-    public void deleteUser(String id) throws SQLException {
-        String sql = "DELETE FROM user WHERE id = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, id);
-            stmt.executeUpdate();
-        }
-    }
-
-    // Update an existing user (optional)
-    public void updateUser(User user) throws SQLException {
-        String sql = "UPDATE user SET username=?, password=?, type=? WHERE id=?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, user.getId());
-            stmt.setString(2, user.getUsername());
-            stmt.setString(3, user.getPassword());
-            stmt.setString(4, user.getType());
-
-            stmt.executeUpdate();
-        }
-    }
-
+    // Add a new user
     public void addUser(User user) throws SQLException {
-        String sql = "INSERT INTO user (id, username, password, type) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO user_new (name, username, password, type) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, user.getId());
+            stmt.setString(1, user.getName());
             stmt.setString(2, user.getUsername());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getType());
@@ -109,5 +77,31 @@ public class UserDAO {
         }
     }
 
-    
+    // Update an existing user
+    public void updateUser(User user) throws SQLException {
+        String sql = "UPDATE user_new SET name=?, username=?, password=?, type=? WHERE id=?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getUsername());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getType());
+            stmt.setInt(5, user.getId());
+
+            stmt.executeUpdate();
+        }
+    }
+
+    // Delete a user
+    public void deleteUser(int id) throws SQLException {
+        String sql = "DELETE FROM user_new WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
 }

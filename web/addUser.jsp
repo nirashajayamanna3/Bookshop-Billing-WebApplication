@@ -92,9 +92,9 @@
 <div class="content">
     <h2 align="center">Add New User</h2>
 
-    <form action="AdduserServlet" method="post">
-        <label for="id">ID:</label>
-        <input type="text" id="id" name="id" required><br><br>
+    <form action="UserServlet" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
         <!-- Username -->
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>

@@ -82,7 +82,7 @@
     </div>
 <h2 style="text-align:center;">Edit Supplier</h2>
 
-   <form  style="width:300px; margin: auto;" action="SupplierServlet" method="post">
+   <form  style="width:300px; margin: auto;" action="UserServlet" method="post">
     <input type="hidden" name="action" value="update">
     <input type="hidden" name="id" value="<%= s.getId() %>">
     Name: <input type="text" name="name" value="<%= s.getCompanyName() %>"><br>

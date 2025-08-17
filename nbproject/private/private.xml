@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/BillDAO.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/home.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/adminDashboard.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/cart.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageCustomer.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageUser.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/CheckoutServlet.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/editSupplier.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/editCustomer.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/SupplierServlet.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/Bill.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/SearchCustomerServlet.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageProducts.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/AddSupplier.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/PayServlet.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Supplier/SupplierDAO.java</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageSuppliers.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/editProduct.jsp</file>
-            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/login.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
