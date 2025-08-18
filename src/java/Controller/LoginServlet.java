@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 if ("cashier".equalsIgnoreCase(type)) {
                     out.println("<script type='text/javascript'>");
                     out.println("alert('Successful login in home page');");
-                    out.println("window.location = 'home.jsp';");
+                    out.println("window.location = 'cart.jsp';");
                     out.println("</script>");
                 } else if ("manager".equalsIgnoreCase(type)) {
                     out.println("<script type='text/javascript'>");

@@ -6,7 +6,29 @@ import java.util.List;
 import persistence.DBConnection;
 
 public class ProductDAO {
+    
+    // Get product by code
+    public Product getProductByCode(String product_code) throws Exception {
+        String sql = "SELECT * FROM item WHERE product_code = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
+            ps.setString(1, product_code);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Product(
+                        rs.getString("product_code"),
+                        rs.getString("product_name"),
+                        rs.getString("description"),
+                        rs.getDouble("unit_price"),
+                        rs.getDouble("discount"),
+                        rs.getDouble("tax")
+                    );
+                }
+            }
+        }
+        return null;
+    }
     // Add a new product
     public void addProduct(Product product) throws Exception {
         String sql = "INSERT INTO item (product_code, product_name, description, unit_price, discount, tax) VALUES (?, ?, ?, ?, ?, ?)";
@@ -52,28 +74,7 @@ public class ProductDAO {
         }
     }
 
-    // Get product by code
-    public Product getProductByCode(String product_code) throws Exception {
-        String sql = "SELECT * FROM item WHERE product_code = ?";
-        try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, product_code);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new Product(
-                        rs.getString("product_code"),
-                        rs.getString("product_name"),
-                        rs.getString("description"),
-                        rs.getDouble("unit_price"),
-                        rs.getDouble("discount"),
-                        rs.getDouble("tax")
-                    );
-                }
-            }
-        }
-        return null;
-    }
+    
 
     // Get all products
     public List<Product> getAllProducts() throws Exception {

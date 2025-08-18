@@ -154,6 +154,8 @@
         <a href="manageCustomer.jsp">🧾 Customer</a>
         <a href="manageBill.jsp">📒 Bill</a>
         <a href="manageSuppliers.jsp">👥 Suppliers</a>
+        <a href="reports.jsp">📒 Reports</a>
+        
         <form action="LogoutServlet" method="get">
             <input type="submit" value="Logout" class="logout-btn">
         </form>
