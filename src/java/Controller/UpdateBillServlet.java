@@ -30,13 +30,13 @@ public class UpdateBillServlet extends HttpServlet {
             int billId = Integer.parseInt(billIdStr);
 
             Connection con = DBConnection.getConnection();
-            String sql = "SELECT customerName, phone, billDate, totalAmount, status FROM bill WHERE billId = ?";
+            String sql = "SELECT customer_name, phone, billDate, totalAmount, status FROM bill WHERE billId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                rs.getString("customerName");
+                rs.getString("customer_name");
                 rs.getString("phone");
                 rs.getString("billDate");
                 rs.getDouble("totalAmount");

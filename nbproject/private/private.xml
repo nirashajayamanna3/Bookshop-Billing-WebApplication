@@ -2,6 +2,26 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/reports/SalesReport.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/BillDAO.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Product/ProductDAO.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/adminDashboard.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/cart.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/CheckoutServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/UpdateBillServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/reports/StockReport.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/CartServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/AddProductServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/reports/SupplierReport.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Bill/Bill.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/manageBill.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/SalesService.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/persistence/Product/Product.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/reports/ReportTest.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/Controller/PayServlet.java</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/web/reports.jsp</file>
+            <file>file:/C:/Users/jayam/Documents/NetBeansProjects/Bookshop/src/java/business/reports/ReportGenerator.java</file>
+        </group>
     </open-files>
 </project-private>
